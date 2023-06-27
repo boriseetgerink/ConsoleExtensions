@@ -5,6 +5,13 @@ namespace BorisEetgerink.ConsoleExtensions
 {
     public static class ConsoleExtensions
     {
+        /// <summary>
+        /// Display a prompt with a default input.
+        /// </summary>
+        /// <param name="prompt">The prompt to display, for example ">".</param>
+        /// <param name="defaultInput">The default input to display, for example "Hello, World!".</param>
+        /// <returns>The input entered by the user.</returns>
+        /// <exception cref="ArgumentNullException">If either prompt or defaultInput are null.</exception>
         public static string ReadLine(string prompt, string defaultInput)
         {
             if (prompt == null)
