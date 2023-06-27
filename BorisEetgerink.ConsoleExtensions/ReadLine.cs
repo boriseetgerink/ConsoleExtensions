@@ -77,6 +77,15 @@ namespace BorisEetgerink.ConsoleExtensions
                         }
 
                         cursorPosition--;
+
+                        if (key.Modifiers.HasFlag(ConsoleModifiers.Control))
+                        {
+                            while (cursorPosition > 0 && input[cursorPosition] != ' ')
+                            {
+                                cursorPosition--;
+                            }
+                        }
+
                         break;
                     case ConsoleKey.RightArrow:
                         if (cursorPosition == input.Length)
@@ -85,6 +94,15 @@ namespace BorisEetgerink.ConsoleExtensions
                         }
 
                         cursorPosition++;
+
+                        if (key.Modifiers.HasFlag(ConsoleModifiers.Control))
+                        {
+                            while (cursorPosition < input.Length && input[cursorPosition] != ' ')
+                            {
+                                cursorPosition++;
+                            }
+                        }
+
                         break;
                     case ConsoleKey.UpArrow:
                     case ConsoleKey.DownArrow:
