@@ -9,9 +9,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{C8BF1B62
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorisEetgerink.ConsoleExtensions", "BorisEetgerink.ConsoleExtensions\BorisEetgerink.ConsoleExtensions.csproj", "{A710E5DE-6DD5-4A3E-A3C4-17667E0A6B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{099AE993-F5CA-40B4-A77A-4466806BE4E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A710E5DE-6DD5-4A3E-A3C4-17667E0A6B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A710E5DE-6DD5-4A3E-A3C4-17667E0A6B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A710E5DE-6DD5-4A3E-A3C4-17667E0A6B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A710E5DE-6DD5-4A3E-A3C4-17667E0A6B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099AE993-F5CA-40B4-A77A-4466806BE4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099AE993-F5CA-40B4-A77A-4466806BE4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099AE993-F5CA-40B4-A77A-4466806BE4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099AE993-F5CA-40B4-A77A-4466806BE4E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
