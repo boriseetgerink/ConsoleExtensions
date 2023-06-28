@@ -1,9 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using BorisEetgerink.ConsoleExtensions;
 
-using BorisEetgerink.ConsoleExtensions;
+string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
+Console.WriteLine($"|{line}|");
 
-// string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
-// Console.WriteLine($"|{line}|");
+// The default usage.
+bool confirmDefault = ConsoleExtensions.Confirm("Continue?");
+Console.WriteLine(confirmDefault);
 
-bool confirm = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
-Console.WriteLine(confirm);
+// Set the no option as the default.
+bool continueWithCaution = ConsoleExtensions.Confirm("Are you sure?", false);
+Console.WriteLine(continueWithCaution);
+
+// Built in support for different languages.
+bool confirmFrench = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
+Console.WriteLine(confirmFrench);
