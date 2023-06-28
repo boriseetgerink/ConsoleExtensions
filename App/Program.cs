@@ -2,8 +2,8 @@
 
 using BorisEetgerink.ConsoleExtensions;
 
-string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
-Console.WriteLine($"|{line}|");
+// string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
+// Console.WriteLine($"|{line}|");
 
-bool confirm = ConsoleExtensions.Confirm("Continue?", false);
+bool confirm = ConsoleExtensions.Confirm("Are you sure?");
 Console.WriteLine(confirm);
