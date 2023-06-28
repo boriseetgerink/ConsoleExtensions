@@ -11,7 +11,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// Display a confirmation prompt with a preset default.
         /// The user can select the yes or no key, press enter to select the default or escape to select the other option.
         /// </summary>
-        /// <param name="prompt">The prompt to display, for example "Continue?"</param>
+        /// <param name="prompt">The prompt to display, for example "Continue?".</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         public static bool Confirm(string prompt) => Confirm(prompt, true);
@@ -20,7 +20,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// Display a confirmation prompt with a preset default.
         /// The user can select the yes or no key, press enter to select the default or escape to select the other option.
         /// </summary>
-        /// <param name="prompt">The prompt to display, for example "Continue?"</param>
+        /// <param name="prompt">The prompt to display, for example "Continue?".</param>
         /// <param name="defaultChoice">True if the yes option is the default, false if the no option is the default. Defaults to true.</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>6
@@ -30,7 +30,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// Display a confirmation prompt with a preset default.
         /// The user can select the yes or no key, press enter to select the default or escape to select the other option.
         /// </summary>
-        /// <param name="prompt">The prompt to display, for example "Continue?"</param>
+        /// <param name="prompt">The prompt to display, for example "Continue?".</param>
         /// <param name="defaultChoice">True if the yes option is the default, false if the no option is the default. Defaults to true.</param>
         /// <param name="yesChar">The character to display for the yes option. Defaults to 'y'.</param>
         /// <param name="noChar">The character to display for the no option. Defaults to 'n'</param>
