@@ -2,15 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>1.0.2</Version>
+        <Version>1.1.0</Version>
         <Authors>Boris Eetgerink</Authors>
         <Copyright>Copyright (c) Boris Eetgerink 2023</Copyright>
-        <Description>Various console extensions. Currently includes ReadLine extension to enable a prompt and default input.</Description>
+        <Description>Various console extensions. Currently includes Confirm to ask the user whether to continue and ReadLine to enable a prompt with default input.</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/boriseetgerink/ConsoleExtensions</PackageProjectUrl>
-        <PackageTags>console;shell;terminal;extensions;readline;input</PackageTags>
-        <PackageReleaseNotes>Initial release of ReadLine extension.</PackageReleaseNotes>
+        <PackageTags>console;shell;terminal;extensions;readline;input;confirm</PackageTags>
+        <PackageReleaseNotes>Added Confirm.</PackageReleaseNotes>
         <RepositoryUrl>https://github.com/boriseetgerink/ConsoleExtensions.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
