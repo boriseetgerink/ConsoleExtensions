@@ -32,18 +32,25 @@ namespace BorisEetgerink.ConsoleExtensions
             {
                 key = Console.ReadKey(true);
                 loweredKeyChar = char.ToLowerInvariant(key.KeyChar);
-            } while (key.Key != ConsoleKey.Enter && loweredKeyChar != loweredYesChar && loweredKeyChar != loweredNoChar);
+            } while (key.Key != ConsoleKey.Enter &&
+                     key.Key != ConsoleKey.Escape &&
+                     loweredKeyChar != loweredYesChar &&
+                     loweredKeyChar != loweredNoChar);
 
-            if (key.Key == ConsoleKey.Enter)
+            switch (key.Key)
             {
-                Console.Write(defaultChoice ? yesChar : noChar);
-                Console.WriteLine();
-                return defaultChoice;
+                case ConsoleKey.Enter:
+                    Console.Write(defaultChoice ? yesChar : noChar);
+                    Console.WriteLine();
+                    return defaultChoice;
+                case ConsoleKey.Escape:
+                    Console.Write(!defaultChoice ? yesChar : noChar);
+                    Console.WriteLine();
+                    return !defaultChoice;
             }
 
             Console.Write(key.KeyChar);
             Console.WriteLine();
-
             return loweredKeyChar == loweredYesChar;
         }
     }
