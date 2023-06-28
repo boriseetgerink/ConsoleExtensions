@@ -6,7 +6,7 @@ namespace BorisEetgerink.ConsoleExtensions
     /// <summary>
     /// Various console extensions.
     /// </summary>
-    public static class ConsoleExtensions
+    public static partial class ConsoleExtensions
     {
         /// <summary>
         /// Display a prompt with a default input.
