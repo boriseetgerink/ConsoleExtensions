@@ -5,5 +5,5 @@ using BorisEetgerink.ConsoleExtensions;
 // string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
 // Console.WriteLine($"|{line}|");
 
-bool confirm = ConsoleExtensions.Confirm("Are you sure?", true, 'y', 'n');
+bool confirm = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
 Console.WriteLine(confirm);

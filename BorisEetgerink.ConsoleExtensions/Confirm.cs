@@ -7,8 +7,6 @@ namespace BorisEetgerink.ConsoleExtensions
     /// </summary>
     public static partial class ConsoleExtensions
     {
-        public static bool Confirm() => Confirm("Continue?");
-
         public static bool Confirm(string prompt) => Confirm(prompt, true);
 
         public static bool Confirm(string prompt, bool defaultChoice) => Confirm(prompt, defaultChoice, 'y', 'n');
