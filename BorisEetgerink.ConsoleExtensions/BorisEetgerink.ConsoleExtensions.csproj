@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <Authors>Boris Eetgerink</Authors>
         <Copyright>Copyright (c) Boris Eetgerink 2023</Copyright>
         <Description>Various console extensions. Currently includes ReadLine extension to enable a prompt and default input.</Description>
@@ -13,6 +13,8 @@
         <PackageReleaseNotes>Initial release of ReadLine extension.</PackageReleaseNotes>
         <RepositoryUrl>https://github.com/boriseetgerink/ConsoleExtensions.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
