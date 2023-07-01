@@ -68,7 +68,7 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentOutOfRangeException(nameof(defaultChoice));
             }
 
-            return 0;
+            return defaultChoice;
         }
     }
 }
