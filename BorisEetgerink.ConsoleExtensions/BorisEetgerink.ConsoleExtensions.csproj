@@ -9,7 +9,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/boriseetgerink/ConsoleExtensions</PackageProjectUrl>
-        <PackageTags>console;shell;terminal;extensions;readline;input;confirm</PackageTags>
+        <PackageTags>console;shell;terminal;extensions;readline;input;confirm;pick;picker;pickone</PackageTags>
         <PackageReleaseNotes>Added Confirm.</PackageReleaseNotes>
         <RepositoryUrl>https://github.com/boriseetgerink/ConsoleExtensions.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
