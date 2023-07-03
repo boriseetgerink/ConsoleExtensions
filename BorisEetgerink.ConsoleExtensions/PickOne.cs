@@ -68,7 +68,64 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentOutOfRangeException(nameof(defaultChoice));
             }
 
-            return defaultChoice;
+            // Start up.
+            bool originalCursorVisible = Console.CursorVisible;
+            Console.CursorVisible = false;
+            int choice = defaultChoice;
+            bool hasEntered = false;
+
+            // Render and input loop.
+            while (!hasEntered)
+            {
+                Console.WriteLine(prompt);
+                for (int i = 0; i < options.Length; i++)
+                {
+                    bool isSelected = i == choice;
+                    Console.WriteLine($"{(isSelected ? '>' : ' ')}{options[i]}");
+                }
+
+                var key = Console.ReadKey(true);
+                switch (key.Key)
+                {
+                    case ConsoleKey.Enter:
+                        hasEntered = true;
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (choice == 0)
+                        {
+                            choice = options.Length - 1;
+                        }
+                        else
+                        {
+                            choice -= 1;
+                        }
+
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if (choice == options.Length - 1)
+                        {
+                            choice = 0;
+                        }
+                        else
+                        {
+                            choice += 1;
+                        }
+
+                        break;
+                }
+
+                if (!hasEntered)
+                {
+                    // Reset the cursor to the start.
+                    Console.CursorLeft = 0;
+                    Console.CursorTop -= options.Length + 1;
+                }
+            }
+
+            // Clean up.
+            Console.CursorVisible = originalCursorVisible;
+
+            return choice;
         }
     }
 }
