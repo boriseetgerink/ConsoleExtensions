@@ -29,6 +29,42 @@ bool confirmFrench = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
 * `y`: The default yes-key. Can be overridden.
 * `n`: The default no-key. Can be overridden.
 
+## PickOne
+
+Display a prompt with a list of options. The user can select the appropriate option with the up and down arrow keys and
+confirm with the enter key.
+
+### Usage
+
+```csharp
+using BorisEetgerink.ConsoleExtensions;
+
+// Select from a list of hard-coded options:
+int selectedIndex = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
+
+// Select from an IEnumerable<string> of options:
+List<string> operatingSystems = new() { "Linux", "MacOS", "Windows" };
+int selectedIndex = ConsoleExtensions.PickOne("Pick your favorite OS:", operatingSystems);
+
+// Optionally set the selected index (defaults to zero, the first option):
+List<string> operatingSystems = new() { "Linux", "MacOS", "Windows" };
+int selectedIndex = ConsoleExtensions.PickOne("Pick your favorite OS:", 2, operatingSystems);
+```
+
+### Output
+
+```
+Pick your favorite OS:
+>Linux
+ MacOS
+ Windows
+```
+
+### Supported keys
+
+* `↑` / `↓`: select the previous or the next option from the list.
+* `Enter`: confirm the selected option.
+
 ## ReadLine
 
 Enable a prompt and default input as an extension to `Console.ReadLine()`.
