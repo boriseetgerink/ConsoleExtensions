@@ -62,8 +62,8 @@ Pick your favorite OS:
 
 ### Supported keys
 
-* `↑` / `↓`: select the previous or the next option from the list.
-* `Enter`: confirm the selected option.
+* `↑` / `↓`: Select the previous or the next option from the list.
+* `Enter`: Confirm the selected option.
 
 ## ReadLine
 
@@ -79,9 +79,10 @@ string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Gre
 
 ### Supported keys
 
-* `Backspace` / `Delete`: remove one character to the left or right.
-* `←` / `→`: move the cursor to the left or right.
-* `Ctrl + ←` / `Ctrl + →`: move the cursor one word to the left or right.
+* `Backspace` / `Delete`: Remove one character to the left or right.
+* `←` / `→`: Move the cursor to the left or right.
+* `Ctrl + ←` / `Ctrl + →`: Move the cursor one word to the left or right.
 * `Home` / `End`: Move the cursor to the beginning or the end of the line.
 * `Esc`: Clear the line.
 * `Ctrl + Z`: Reset the line to the default input.
+* `Enter`: Confirm the input.
