@@ -2,15 +2,22 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <Authors>Boris Eetgerink</Authors>
         <Copyright>Copyright (c) Boris Eetgerink 2023</Copyright>
-        <Description>Various console extensions. Currently includes Confirm to ask the user whether to continue and ReadLine to enable a prompt with default input.</Description>
+        <Description>
+          Various console extensions. Currently includes Confirm to ask the user whether to continue, PickOne to select
+          from a list of options and ReadLine to enable a prompt with default input.
+        </Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/boriseetgerink/ConsoleExtensions</PackageProjectUrl>
-        <PackageTags>console;shell;terminal;extensions;readline;input;confirm</PackageTags>
-        <PackageReleaseNotes>Added Confirm.</PackageReleaseNotes>
+        <PackageTags>console;shell;terminal;extensions;readline;input;confirm;pick;picker;pickone</PackageTags>
+        <PackageReleaseNotes>
+          v1.2.0: Add PickOne.
+          v1.1.1: Include debug symbols.
+          v1.1.0: Add Confirm.
+        </PackageReleaseNotes>
         <RepositoryUrl>https://github.com/boriseetgerink/ConsoleExtensions.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
