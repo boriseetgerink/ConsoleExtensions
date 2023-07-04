@@ -22,6 +22,12 @@ bool continueWithCaution = ConsoleExtensions.Confirm("Are you sure?", false);
 bool confirmFrench = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
 ```
 
+### Output
+
+```
+Continue? [Y/n]:
+```
+
 ### Supported keys
 
 * `Enter`: Select the default option (defaults to yes).
@@ -75,6 +81,12 @@ Enable a prompt and default input as an extension to `Console.ReadLine()`.
 using BorisEetgerink.ConsoleExtensions;
 
 string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
+```
+
+### Output
+
+```
+What is your favorite color? >Green
 ```
 
 ### Supported keys
