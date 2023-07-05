@@ -1,6 +1,6 @@
 # .NET Console Extensions
 
-Various console extensions.
+Various console extensions to handle user input.
 
 ## Confirm
 

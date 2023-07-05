@@ -2,9 +2,6 @@
 
 namespace BorisEetgerink.ConsoleExtensions
 {
-    /// <summary>
-    /// Various console extensions.
-    /// </summary>
     public static partial class ConsoleExtensions
     {
         /// <summary>
