@@ -1,11 +1,11 @@
 ﻿using BorisEetgerink.ConsoleExtensions;
 
-int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
-Console.WriteLine(index);
+// int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
+// Console.WriteLine(index);
 
-// string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
-// Console.WriteLine($"|{line}|");
-//
+string? line = ConsoleExtensions.ReadLine("What is your favorite color? >");
+Console.WriteLine($"|{line}|");
+
 // // The default usage.
 // bool confirmDefault = ConsoleExtensions.Confirm("Continue?");
 // Console.WriteLine(confirmDefault);

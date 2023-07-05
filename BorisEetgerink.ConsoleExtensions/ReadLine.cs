@@ -6,6 +6,14 @@ namespace BorisEetgerink.ConsoleExtensions
     public static partial class ConsoleExtensions
     {
         /// <summary>
+        /// Display a prompt without a default input.
+        /// </summary>
+        /// <param name="prompt">The prompt to display, for example ">".</param>
+        /// <returns>The input entered by the user.</returns>
+        /// <exception cref="ArgumentNullException">If prompt is null.</exception>
+        public static string ReadLine(string prompt) => ReadLine(prompt, string.Empty);
+
+        /// <summary>
         /// Display a prompt with a default input.
         /// </summary>
         /// <param name="prompt">The prompt to display, for example ">".</param>
