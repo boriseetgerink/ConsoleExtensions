@@ -40,13 +40,26 @@ namespace BorisEetgerink.ConsoleExtensions
 
             StringBuilder input = new StringBuilder(defaultInput);
             bool originalCursorVisible = Console.CursorVisible;
+            int originalCursorLeft = Console.CursorLeft;
+            int originalCursorTop = Console.CursorTop;
+
+            // The cursor position relative to the input. Starts at the end of the input.
+            // Easier to work with, as it does not have to take line breaks and prompt length into account.
+            int relativeCursorPosition = input.Length;
 
             // 1. render
+            Console.CursorVisible = false;
+            Console.Write(prompt);
+            Console.Write(input);
+            Console.CursorVisible = true;
+
             // 2. while
             // 3a. wait for key
-            // 3b. re-render.
-
+            // 3b. re-render
+            // 4. clean up
+            Console.WriteLine();
             Console.CursorVisible = originalCursorVisible;
+
             return input.ToString();
 
             /*// TODO: Work with originalCursorTop and originalCursorLeft and only reset to that position if the current
