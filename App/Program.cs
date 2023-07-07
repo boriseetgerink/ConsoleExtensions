@@ -3,7 +3,7 @@
 // int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
 // Console.WriteLine(index);
 
-string? line = ConsoleExtensions.ReadLine();
+string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
 Console.WriteLine($"|{line}|");
 
 // // The default usage.

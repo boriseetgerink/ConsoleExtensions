@@ -38,26 +38,38 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
+            // Start up
+            bool originalCursorVisible = Console.CursorVisible;
             StringBuilder input = new StringBuilder(defaultInput);
-            int maxLength = prompt.Length + defaultInput.Length;
-            int cursorPosition = defaultInput.Length;
+            int cursorPosition = input.Length;
+            int maxLength = prompt.Length + input.Length + 1;
+            int maxLine = Math.DivRem(maxLength, Console.BufferWidth, out int maxColumn);
+            bool isConsecutiveLoop = false;
             bool hasEntered = false;
             while (!hasEntered)
             {
-                maxLength = Math.Max(maxLength, prompt.Length + input.Length);
-
                 Console.CursorVisible = false;
-                Console.CursorLeft = 0;
-                Console.Write(prompt);
-                Console.Write(input);
-                for (int i = Console.CursorLeft; i < maxLength; i++)
+
+                // Render loop
+                // Add one, because a character could be deleted/back-spaced.
+                maxLength = prompt.Length + input.Length + 1;
+                maxLine = Math.DivRem(maxLength, Console.BufferWidth, out maxColumn);
+                int currentLine = Math.DivRem(prompt.Length + cursorPosition, Console.BufferWidth, out int currentColumn);
+
+                if (isConsecutiveLoop)
                 {
-                    Console.Write(' ');
+                    ResetCursorPositionFrom(currentLine);
                 }
 
-                Console.CursorLeft = prompt.Length + cursorPosition;
-                Console.CursorVisible = true;
+                isConsecutiveLoop = true;
+                Console.Write(new string(' ', maxLength));
+                ResetCursorPositionFrom(maxLine);
+                Console.Write(prompt);
+                Console.Write(input);
+                ResetCursorPositionFrom(maxLine);
+                SetCursorPositionTo(currentLine, currentColumn);
 
+                Console.CursorVisible = true;
                 ConsoleKeyInfo key = Console.ReadKey(true);
                 switch (key.Key)
                 {
@@ -147,10 +159,32 @@ namespace BorisEetgerink.ConsoleExtensions
                 }
             }
 
-            // Terminate the prompt by writing a newline.
+            // Clean up
+            Console.CursorVisible = false;
+            SetCursorPositionTo(maxLine, maxColumn);
             Console.WriteLine();
+            Console.CursorVisible = originalCursorVisible;
 
             return input.ToString();
+        }
+
+        private static void ResetCursorPositionFrom(int currentLine)
+        {
+            Console.CursorLeft = 0;
+            if (currentLine > 0)
+            {
+                int newTop = Console.CursorTop - currentLine;
+                Console.CursorTop = Math.Max(0, newTop);
+            }
+        }
+
+        private static void SetCursorPositionTo(int currentLine, int currentColumn)
+        {
+            Console.CursorLeft = currentColumn;
+            if (currentLine > 0)
+            {
+                Console.CursorTop += currentLine;
+            }
         }
 
         private static int InsertCharacter(StringBuilder input, ConsoleKeyInfo key, int cursorPosition)
