@@ -46,6 +46,8 @@ namespace BorisEetgerink.ConsoleExtensions
             // 1. render
             Console.CursorVisible = false;
             Console.Write(prompt);
+            int inputStartCursorLeftOffset = Console.CursorLeft;
+            int inputStartCursorTopOffset = Console.CursorTop;
             Console.Write(input);
             Console.CursorVisible = true;
 
