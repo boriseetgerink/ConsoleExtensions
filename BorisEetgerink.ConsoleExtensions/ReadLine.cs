@@ -38,9 +38,24 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
+            // TODO: Work with originalCursorTop and originalCursorLeft and only reset to that position if the current
+            // value is different from the original position.
+
             // Start up
             bool originalCursorVisible = Console.CursorVisible;
+            int originalCursorLeft = Console.CursorLeft;
+            int originalCursorTop = Console.CursorTop;
             StringBuilder input = new StringBuilder(defaultInput);
+
+            Console.CursorVisible = false;
+            Console.Write(prompt);
+            Console.Write(input);
+            Console.CursorVisible = true;
+
+            int newCursorLeft = Console.CursorLeft;
+            int newCursorTop = Console.CursorTop;
+            Console.SetCursorPosition(0, 0);
+
             int cursorPosition = input.Length;
             int maxLength = prompt.Length + input.Length + 1;
             int maxLine = Math.DivRem(maxLength, Console.BufferWidth, out int maxColumn);
