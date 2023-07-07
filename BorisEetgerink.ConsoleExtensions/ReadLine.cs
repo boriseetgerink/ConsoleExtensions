@@ -38,7 +38,18 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
-            // TODO: Work with originalCursorTop and originalCursorLeft and only reset to that position if the current
+            StringBuilder input = new StringBuilder(defaultInput);
+            bool originalCursorVisible = Console.CursorVisible;
+
+            // 1. render
+            // 2. while
+            // 3a. wait for key
+            // 3b. re-render.
+
+            Console.CursorVisible = originalCursorVisible;
+            return input.ToString();
+
+            /*// TODO: Work with originalCursorTop and originalCursorLeft and only reset to that position if the current
             // value is different from the original position.
 
             // Start up
@@ -51,10 +62,6 @@ namespace BorisEetgerink.ConsoleExtensions
             Console.Write(prompt);
             Console.Write(input);
             Console.CursorVisible = true;
-
-            int newCursorLeft = Console.CursorLeft;
-            int newCursorTop = Console.CursorTop;
-            Console.SetCursorPosition(0, 0);
 
             int cursorPosition = input.Length;
             int maxLength = prompt.Length + input.Length + 1;
@@ -178,10 +185,10 @@ namespace BorisEetgerink.ConsoleExtensions
             Console.WriteLine();
             Console.CursorVisible = originalCursorVisible;
 
-            return input.ToString();
+            return input.ToString();*/
         }
 
-        private static void ResetCursorPositionFrom(int currentLine)
+        /*private static void ResetCursorPositionFrom(int currentLine)
         {
             Console.CursorLeft = 0;
             if (currentLine > 0)
@@ -198,7 +205,7 @@ namespace BorisEetgerink.ConsoleExtensions
             {
                 Console.CursorTop += currentLine;
             }
-        }
+        }*/
 
         private static int InsertCharacter(StringBuilder input, ConsoleKeyInfo key, int cursorPosition)
         {
