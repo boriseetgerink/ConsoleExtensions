@@ -44,7 +44,6 @@ namespace BorisEetgerink.ConsoleExtensions
             int cursorPosition = input.Length;
             int maxLength = prompt.Length + input.Length + 1;
             int maxLine = Math.DivRem(maxLength, Console.BufferWidth, out int maxColumn);
-            bool isConsecutiveLoop = false;
             bool hasEntered = false;
             while (!hasEntered)
             {
@@ -56,12 +55,11 @@ namespace BorisEetgerink.ConsoleExtensions
                 maxLine = Math.DivRem(maxLength, Console.BufferWidth, out maxColumn);
                 int currentLine = Math.DivRem(prompt.Length + cursorPosition, Console.BufferWidth, out int currentColumn);
 
-                if (isConsecutiveLoop)
+                if (Console.CursorLeft != 0 || Console.CursorTop != 0)
                 {
                     ResetCursorPositionFrom(currentLine);
                 }
 
-                isConsecutiveLoop = true;
                 Console.Write(new string(' ', maxLength));
                 ResetCursorPositionFrom(maxLine);
                 Console.Write(prompt);
