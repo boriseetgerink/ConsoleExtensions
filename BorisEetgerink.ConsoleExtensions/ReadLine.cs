@@ -43,15 +43,15 @@ namespace BorisEetgerink.ConsoleExtensions
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
 
-            // The cursor position relative to the input. Starts at the end of the input.
-            // Easier to work with, as it does not have to take line breaks and prompt length into account.
-            int relativeCursorPosition = input.Length;
-
             // 1. render
             Console.CursorVisible = false;
             Console.Write(prompt);
             Console.Write(input);
             Console.CursorVisible = true;
+
+            // The cursor position relative to the input. Starts at the end of the input.
+            // Easier to work with, as it does not have to take line breaks and prompt length into account.
+            int relativeCursorPosition = input.Length;
 
             // 2. while
             // 3a. wait for key
