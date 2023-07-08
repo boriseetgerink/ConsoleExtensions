@@ -3,11 +3,22 @@ using System.Text;
 
 namespace BorisEetgerink.ConsoleExtensions
 {
-    /// <summary>
-    /// Various console extensions.
-    /// </summary>
     public static partial class ConsoleExtensions
     {
+        /// <summary>
+        /// Accept input without displaying a prompt or default input.
+        /// </summary>
+        /// <returns>The input entered by the user.</returns>
+        public static string ReadLine() => ReadLine(string.Empty, string.Empty);
+
+        /// <summary>
+        /// Display a prompt without a default input.
+        /// </summary>
+        /// <param name="prompt">The prompt to display, for example ">".</param>
+        /// <returns>The input entered by the user.</returns>
+        /// <exception cref="ArgumentNullException">If prompt is null.</exception>
+        public static string ReadLine(string prompt) => ReadLine(prompt, string.Empty);
+
         /// <summary>
         /// Display a prompt with a default input.
         /// </summary>
@@ -27,24 +38,28 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
+            bool originalCursorVisible = Console.CursorVisible;
+            int originalCursorLeft = Console.CursorLeft;
+            int originalCursorTop = Console.CursorTop;
+
             StringBuilder input = new StringBuilder(defaultInput);
-            int maxLength = prompt.Length + defaultInput.Length;
-            int cursorPosition = defaultInput.Length;
+            int maxInputLength = input.Length;
+
+            // The cursor position relative to the input. Starts at the end of the input.
+            // Easier to work with, as it does not have to take line breaks and prompt length into account.
+            int cursorPosition = input.Length;
+
             bool hasEntered = false;
             while (!hasEntered)
             {
-                maxLength = Math.Max(maxLength, prompt.Length + input.Length);
-
                 Console.CursorVisible = false;
-                Console.CursorLeft = 0;
+                SetCursorPosition(originalCursorLeft, originalCursorTop);
                 Console.Write(prompt);
                 Console.Write(input);
-                for (int i = Console.CursorLeft; i < maxLength; i++)
-                {
-                    Console.Write(' ');
-                }
-
-                Console.CursorLeft = prompt.Length + cursorPosition;
+                maxInputLength = Math.Max(maxInputLength, input.Length);
+                int overflow = Math.Max(maxInputLength - input.Length, 0);
+                Console.Write(new string(' ', overflow));
+                SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, cursorPosition);
                 Console.CursorVisible = true;
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -136,10 +151,30 @@ namespace BorisEetgerink.ConsoleExtensions
                 }
             }
 
-            // Terminate the prompt by writing a newline.
             Console.WriteLine();
+            Console.CursorVisible = originalCursorVisible;
 
             return input.ToString();
+        }
+
+        private static void SetCursorPosition(int left, int top)
+        {
+            if (Console.CursorLeft != left)
+            {
+                Console.CursorLeft = left;
+            }
+
+            if (Console.CursorTop != top)
+            {
+                Console.CursorTop = top;
+            }
+        }
+
+        private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop, int promptLength, int relativeCursorPosition)
+        {
+            int cursorOffset = originalCursorTop * Console.BufferWidth + originalCursorLeft + promptLength + relativeCursorPosition;
+            int top = Math.DivRem(cursorOffset, Console.BufferWidth, out int left);
+            SetCursorPosition(left, top);
         }
 
         private static int InsertCharacter(StringBuilder input, ConsoleKeyInfo key, int cursorPosition)

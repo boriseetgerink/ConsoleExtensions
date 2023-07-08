@@ -5,7 +5,7 @@
         <Version>1.2.0</Version>
         <Authors>Boris Eetgerink</Authors>
         <Copyright>Copyright (c) Boris Eetgerink 2023</Copyright>
-        <Description>Various console extensions. Currently includes Confirm to ask the user whether to continue, PickOne to select from a list of options and ReadLine to enable a prompt with default input.</Description>
+        <Description>Various console extensions to handle user input.</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/boriseetgerink/ConsoleExtensions</PackageProjectUrl>
