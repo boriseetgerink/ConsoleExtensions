@@ -43,6 +43,7 @@ namespace BorisEetgerink.ConsoleExtensions
             int originalCursorTop = Console.CursorTop;
 
             StringBuilder input = new StringBuilder(defaultInput);
+            int maxInputLength = input.Length;
 
             // The cursor position relative to the input. Starts at the end of the input.
             // Easier to work with, as it does not have to take line breaks and prompt length into account.
@@ -55,7 +56,9 @@ namespace BorisEetgerink.ConsoleExtensions
                 SetCursorPosition(originalCursorLeft, originalCursorTop);
                 Console.Write(prompt);
                 Console.Write(input);
-                Console.Write(' '); // in case of delete or backspace.
+                maxInputLength = Math.Max(maxInputLength, input.Length);
+                int overflow = Math.Max(maxInputLength - input.Length, 0);
+                Console.Write(new string(' ', overflow));
                 SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, cursorPosition);
                 Console.CursorVisible = true;
 
