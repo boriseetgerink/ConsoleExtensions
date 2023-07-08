@@ -51,10 +51,11 @@ namespace BorisEetgerink.ConsoleExtensions
             while (!hasEntered)
             {
                 Console.CursorVisible = false;
-                ResetCursorPosition(originalCursorLeft, originalCursorTop);
+                SetCursorPosition(originalCursorLeft, originalCursorTop);
                 Console.Write(prompt);
                 Console.Write(input);
                 Console.Write(' '); // in case of delete or backspace.
+                SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, relativeCursorPosition);
                 Console.CursorVisible = true;
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -216,26 +217,7 @@ namespace BorisEetgerink.ConsoleExtensions
             return input.ToString();*/
         }
 
-        /*private static void ResetCursorPositionFrom(int currentLine)
-        {
-            Console.CursorLeft = 0;
-            if (currentLine > 0)
-            {
-                int newTop = Console.CursorTop - currentLine;
-                Console.CursorTop = Math.Max(0, newTop);
-            }
-        }
-
-        private static void SetCursorPositionTo(int currentLine, int currentColumn)
-        {
-            Console.CursorLeft = currentColumn;
-            if (currentLine > 0)
-            {
-                Console.CursorTop += currentLine;
-            }
-        }*/
-
-        private static void ResetCursorPosition(int originalCursorLeft, int originalCursorTop)
+        private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop)
         {
             if (Console.CursorLeft != originalCursorLeft)
             {
@@ -246,6 +228,13 @@ namespace BorisEetgerink.ConsoleExtensions
             {
                 Console.CursorTop = originalCursorTop;
             }
+        }
+
+        private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop, int promptLength, int relativeCursorPosition)
+        {
+            int cursorOffset = originalCursorTop * Console.BufferWidth + originalCursorLeft + promptLength + relativeCursorPosition;
+            int top = Math.DivRem(cursorOffset, Console.BufferWidth, out int left);
+            SetCursorPosition(left, top);
         }
 
         private static int InsertCharacter(StringBuilder input, ConsoleKeyInfo key, int cursorPosition)
