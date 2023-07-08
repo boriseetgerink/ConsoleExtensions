@@ -157,16 +157,16 @@ namespace BorisEetgerink.ConsoleExtensions
             return input.ToString();
         }
 
-        private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop)
+        private static void SetCursorPosition(int left, int top)
         {
-            if (Console.CursorLeft != originalCursorLeft)
+            if (Console.CursorLeft != left)
             {
-                Console.CursorLeft = originalCursorLeft;
+                Console.CursorLeft = left;
             }
 
-            if (Console.CursorTop != originalCursorTop)
+            if (Console.CursorTop != top)
             {
-                Console.CursorTop = originalCursorTop;
+                Console.CursorTop = top;
             }
         }
 
