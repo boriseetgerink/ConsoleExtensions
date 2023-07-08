@@ -43,10 +43,19 @@ namespace BorisEetgerink.ConsoleExtensions
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
 
+            // The cursor position relative to the input. Starts at the end of the input.
+            // Easier to work with, as it does not have to take line breaks and prompt length into account.
+            int relativeCursorPosition = input.Length;
+
             bool hasEntered = false;
             while (!hasEntered)
             {
+                Console.CursorVisible = false;
                 ResetCursorPosition(originalCursorLeft, originalCursorTop);
+                Console.Write(prompt);
+                Console.Write(input);
+                Console.Write(' '); // in case of delete or backspace.
+                Console.CursorVisible = true;
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
             }
@@ -58,10 +67,6 @@ namespace BorisEetgerink.ConsoleExtensions
             int inputStartCursorTopOffset = Console.CursorTop;
             Console.Write(input);
             Console.CursorVisible = true;
-
-            // The cursor position relative to the input. Starts at the end of the input.
-            // Easier to work with, as it does not have to take line breaks and prompt length into account.
-            int relativeCursorPosition = input.Length;
 
             // 2. while
             // 3a. wait for key
