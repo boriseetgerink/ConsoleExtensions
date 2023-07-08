@@ -46,7 +46,7 @@ namespace BorisEetgerink.ConsoleExtensions
 
             // The cursor position relative to the input. Starts at the end of the input.
             // Easier to work with, as it does not have to take line breaks and prompt length into account.
-            int relativeCursorPosition = input.Length;
+            int cursorPosition = input.Length;
 
             bool hasEntered = false;
             while (!hasEntered)
@@ -56,58 +56,9 @@ namespace BorisEetgerink.ConsoleExtensions
                 Console.Write(prompt);
                 Console.Write(input);
                 Console.Write(' '); // in case of delete or backspace.
-                SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, relativeCursorPosition);
+                SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, cursorPosition);
                 Console.CursorVisible = true;
 
-                ConsoleKeyInfo key = Console.ReadKey(true);
-            }
-
-            Console.WriteLine();
-            Console.CursorVisible = originalCursorVisible;
-
-            return input.ToString();
-
-            /*// TODO: Work with originalCursorTop and originalCursorLeft and only reset to that position if the current
-            // value is different from the original position.
-
-            // Start up
-            bool originalCursorVisible = Console.CursorVisible;
-            int originalCursorLeft = Console.CursorLeft;
-            int originalCursorTop = Console.CursorTop;
-            StringBuilder input = new StringBuilder(defaultInput);
-
-            Console.CursorVisible = false;
-            Console.Write(prompt);
-            Console.Write(input);
-            Console.CursorVisible = true;
-
-            int cursorPosition = input.Length;
-            int maxLength = prompt.Length + input.Length + 1;
-            int maxLine = Math.DivRem(maxLength, Console.BufferWidth, out int maxColumn);
-            bool hasEntered = false;
-            while (!hasEntered)
-            {
-                Console.CursorVisible = false;
-
-                // Render loop
-                // Add one, because a character could be deleted/back-spaced.
-                maxLength = prompt.Length + input.Length + 1;
-                maxLine = Math.DivRem(maxLength, Console.BufferWidth, out maxColumn);
-                int currentLine = Math.DivRem(prompt.Length + cursorPosition, Console.BufferWidth, out int currentColumn);
-
-                if (Console.CursorLeft != 0 || Console.CursorTop != 0)
-                {
-                    ResetCursorPositionFrom(currentLine);
-                }
-
-                Console.Write(new string(' ', maxLength));
-                ResetCursorPositionFrom(maxLine);
-                Console.Write(prompt);
-                Console.Write(input);
-                ResetCursorPositionFrom(maxLine);
-                SetCursorPositionTo(currentLine, currentColumn);
-
-                Console.CursorVisible = true;
                 ConsoleKeyInfo key = Console.ReadKey(true);
                 switch (key.Key)
                 {
@@ -197,13 +148,10 @@ namespace BorisEetgerink.ConsoleExtensions
                 }
             }
 
-            // Clean up
-            Console.CursorVisible = false;
-            SetCursorPositionTo(maxLine, maxColumn);
             Console.WriteLine();
             Console.CursorVisible = originalCursorVisible;
 
-            return input.ToString();*/
+            return input.ToString();
         }
 
         private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop)
