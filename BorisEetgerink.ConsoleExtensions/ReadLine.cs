@@ -43,6 +43,14 @@ namespace BorisEetgerink.ConsoleExtensions
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
 
+            bool hasEntered = false;
+            while (!hasEntered)
+            {
+                ResetCursorPosition(originalCursorLeft, originalCursorTop);
+
+                ConsoleKeyInfo key = Console.ReadKey(true);
+            }
+
             // 1. render
             Console.CursorVisible = false;
             Console.Write(prompt);
@@ -221,6 +229,19 @@ namespace BorisEetgerink.ConsoleExtensions
                 Console.CursorTop += currentLine;
             }
         }*/
+
+        private static void ResetCursorPosition(int originalCursorLeft, int originalCursorTop)
+        {
+            if (Console.CursorLeft != originalCursorLeft)
+            {
+                Console.CursorLeft = originalCursorLeft;
+            }
+
+            if (Console.CursorTop != originalCursorTop)
+            {
+                Console.CursorTop = originalCursorTop;
+            }
+        }
 
         private static int InsertCharacter(StringBuilder input, ConsoleKeyInfo key, int cursorPosition)
         {
