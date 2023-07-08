@@ -38,10 +38,11 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
-            StringBuilder input = new StringBuilder(defaultInput);
             bool originalCursorVisible = Console.CursorVisible;
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
+
+            StringBuilder input = new StringBuilder(defaultInput);
 
             // The cursor position relative to the input. Starts at the end of the input.
             // Easier to work with, as it does not have to take line breaks and prompt length into account.
@@ -61,18 +62,6 @@ namespace BorisEetgerink.ConsoleExtensions
                 ConsoleKeyInfo key = Console.ReadKey(true);
             }
 
-            // 1. render
-            Console.CursorVisible = false;
-            Console.Write(prompt);
-            int inputStartCursorLeftOffset = Console.CursorLeft;
-            int inputStartCursorTopOffset = Console.CursorTop;
-            Console.Write(input);
-            Console.CursorVisible = true;
-
-            // 2. while
-            // 3a. wait for key
-            // 3b. re-render
-            // 4. clean up
             Console.WriteLine();
             Console.CursorVisible = originalCursorVisible;
 
