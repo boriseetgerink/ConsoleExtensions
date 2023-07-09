@@ -38,6 +38,11 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(defaultInput));
             }
 
+            // cmd.exe has a default buffer height of the window height.
+            // An ArgumentOutOfRangeException is thrown when the cursor position exceeds the buffer height.
+            // Set the buffer height to the maximum allowed value to prevent the exception.
+            Console.BufferHeight = short.MaxValue - 1;
+
             bool originalCursorVisible = Console.CursorVisible;
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
