@@ -67,6 +67,8 @@ namespace BorisEetgerink.ConsoleExtensions
 
             // Start up.
             bool originalCursorVisible = Console.CursorVisible;
+            int originalCursorLeft = Console.CursorLeft;
+            int originalCursorTop = Console.CursorTop;
             Console.CursorVisible = false;
             int choice = defaultChoice;
             bool hasEntered = false;
@@ -74,6 +76,7 @@ namespace BorisEetgerink.ConsoleExtensions
             // Render and input loop.
             while (!hasEntered)
             {
+                SetCursorPosition(originalCursorLeft, originalCursorTop);
                 Console.WriteLine(prompt);
                 for (int i = 0; i < options.Length; i++)
                 {
@@ -109,13 +112,6 @@ namespace BorisEetgerink.ConsoleExtensions
                         }
 
                         break;
-                }
-
-                if (!hasEntered)
-                {
-                    // Reset the cursor to the start.
-                    Console.CursorLeft = 0;
-                    Console.CursorTop -= options.Length + 1;
                 }
             }
 
