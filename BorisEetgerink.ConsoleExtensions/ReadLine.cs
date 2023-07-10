@@ -162,19 +162,6 @@ namespace BorisEetgerink.ConsoleExtensions
             return input.ToString();
         }
 
-        private static void SetCursorPosition(int left, int top)
-        {
-            if (Console.CursorLeft != left)
-            {
-                Console.CursorLeft = left;
-            }
-
-            if (Console.CursorTop != top)
-            {
-                Console.CursorTop = top;
-            }
-        }
-
         private static void SetCursorPosition(int originalCursorLeft, int originalCursorTop, int promptLength, int relativeCursorPosition)
         {
             int cursorOffset = originalCursorTop * Console.BufferWidth + originalCursorLeft + promptLength + relativeCursorPosition;

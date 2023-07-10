@@ -1,7 +1,7 @@
 ﻿using BorisEetgerink.ConsoleExtensions;
 
-// int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
-// Console.WriteLine(index);
+int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
+Console.WriteLine(index);
 
 string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
 Console.WriteLine($"|{line}|");
