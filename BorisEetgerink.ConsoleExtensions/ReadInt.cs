@@ -23,6 +23,11 @@ namespace BorisEetgerink.ConsoleExtensions
                 throw new ArgumentNullException(nameof(prompt));
             }
 
+            if (invalidNumberMessage == null)
+            {
+                throw new ArgumentNullException(nameof(invalidNumberMessage));
+            }
+
             string defaultInputString = defaultInput?.ToString() ?? string.Empty;
 
             int input;
