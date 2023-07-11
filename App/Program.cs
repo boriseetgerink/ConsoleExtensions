@@ -1,10 +1,13 @@
 ﻿using BorisEetgerink.ConsoleExtensions;
 
-int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
-Console.WriteLine(index);
+int number = ConsoleExtensions.ReadInt("ID>", 42, "Invalid ID.");
+Console.WriteLine(number);
 
-string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
-Console.WriteLine($"|{line}|");
+// int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
+// Console.WriteLine(index);
+//
+// string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
+// Console.WriteLine($"|{line}|");
 
 // // The default usage.
 // bool confirmDefault = ConsoleExtensions.Confirm("Continue?");
