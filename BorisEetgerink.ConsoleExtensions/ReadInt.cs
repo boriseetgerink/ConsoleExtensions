@@ -4,13 +4,19 @@ namespace BorisEetgerink.ConsoleExtensions
 {
     public static partial class ConsoleExtensions
     {
-        public static int ReadInt() => ReadInt(string.Empty, null);
+        private const string InvalidNumberMessage = "Invalid number.";
 
-        public static int ReadInt(string prompt) => ReadInt(prompt, null);
+        public static int ReadInt() => ReadInt(string.Empty, null, InvalidNumberMessage);
 
-        public static int ReadInt(string prompt, int defaultInput) => ReadInt(prompt, (int?)defaultInput);
+        public static int ReadInt(string prompt) => ReadInt(prompt, null, InvalidNumberMessage);
 
-        private static int ReadInt(string prompt, int? defaultInput)
+        public static int ReadInt(string prompt, string invalidNumberMessage) => ReadInt(prompt, null, invalidNumberMessage);
+
+        public static int ReadInt(string prompt, int defaultInput) => ReadInt(prompt, (int?)defaultInput, InvalidNumberMessage);
+
+        public static int ReadInt(string prompt, int defaultInput, string invalidNumberMessage) => ReadInt(prompt, (int?)defaultInput, invalidNumberMessage);
+
+        private static int ReadInt(string prompt, int? defaultInput, string invalidNumberMessage)
         {
             if (prompt == null)
             {

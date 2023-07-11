@@ -1,5 +1,7 @@
 ﻿using BorisEetgerink.ConsoleExtensions;
 
+int number = ConsoleExtensions.ReadInt("ID>", "Invalid ID");
+
 int index = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
 Console.WriteLine(index);
 
