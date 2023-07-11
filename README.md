@@ -71,6 +71,30 @@ Pick your favorite OS:
 * `↑` / `↓`: Select the previous or the next option from the list.
 * `Enter`: Confirm the selected option.
 
+## ReadInt
+
+Extension to ReadLine to enter a number.
+
+### Usage
+
+```csharp
+using BorisEetgerink.ConsoleExtensions;
+
+int number = ConsoleExtensions.ReadInt("ID>", 42, "Invalid ID.");
+```
+
+### Output
+
+```
+ID>abc
+Invalid ID.
+ID>42
+```
+
+### Supported keys
+
+See supported keys of ReadLine.
+
 ## ReadLine
 
 Enable a prompt and default input as an extension to `Console.ReadLine()`.
