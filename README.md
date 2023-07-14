@@ -1,6 +1,6 @@
 # .NET Console Extensions
 
-Various console extensions to handle user input.
+Various console extensions to handle user input. Bug reports, feature ideas and PRs are welcome through the GitHub project. 
 
 ## Confirm
 
