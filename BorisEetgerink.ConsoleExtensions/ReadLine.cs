@@ -9,7 +9,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// Accept input without displaying a prompt or default input.
         /// </summary>
         /// <returns>The input entered by the user.</returns>
-        public static string ReadLine() => ReadLine(string.Empty, string.Empty);
+        public static string ReadLine() => ReadLine(string.Empty, string.Empty, false);
 
         /// <summary>
         /// Display a prompt without a default input.
@@ -17,7 +17,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="prompt">The prompt to display, for example ">".</param>
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
-        public static string ReadLine(string prompt) => ReadLine(prompt, string.Empty);
+        public static string ReadLine(string prompt) => ReadLine(prompt, string.Empty, false);
 
         /// <summary>
         /// Display a prompt with a default input.
@@ -26,7 +26,9 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="defaultInput">The default input to display, for example "Hello, World!".</param>
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If either prompt or defaultInput are null.</exception>
-        public static string ReadLine(string prompt, string defaultInput)
+        public static string ReadLine(string prompt, string defaultInput) => ReadLine(prompt, defaultInput, false);
+
+        private static string ReadLine(string prompt, string defaultInput, bool maskInput)
         {
             if (prompt == null)
             {
@@ -60,7 +62,16 @@ namespace BorisEetgerink.ConsoleExtensions
                 Console.CursorVisible = false;
                 SetCursorPosition(originalCursorLeft, originalCursorTop);
                 Console.Write(prompt);
-                Console.Write(input);
+
+                if (maskInput)
+                {
+                    Console.Write(new string('*', input.Length));
+                }
+                else
+                {
+                    Console.Write(input);
+                }
+
                 maxInputLength = Math.Max(maxInputLength, input.Length);
                 int overflow = Math.Max(maxInputLength - input.Length, 0);
                 Console.Write(new string(' ', overflow));

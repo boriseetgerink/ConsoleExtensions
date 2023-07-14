@@ -122,3 +122,27 @@ What is your favorite color? >Green
 * `Esc`: Clear the line.
 * `Ctrl + Z`: Reset the line to the default input.
 * `Enter`: Confirm the input.
+
+## ReadPassword
+
+Display a prompt for a password, masking the input.
+
+### Usage
+
+```csharp
+using BorisEetgerink.ConsoleExtensions;
+
+string? username = ConsoleExtensions.ReadLine("Username:");
+string? password = ConsoleExtensions.ReadPassword("Password:");
+```
+
+### Output
+
+```
+Username:BorisEetgerink
+Password:****************
+```
+
+### Supported keys
+
+See supported keys of ReadLine.
