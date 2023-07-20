@@ -1,4 +1,5 @@
 ﻿using System;
+using BorisEetgerink.ConsoleExtensions.Options;
 
 namespace BorisEetgerink.ConsoleExtensions
 {
@@ -11,7 +12,12 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="prompt">The prompt to display, for example "Continue?".</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
-        public static bool Confirm(string prompt) => Confirm(prompt, true);
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
+        public static bool Confirm(string prompt) =>
+            Confirm(options =>
+            {
+                options.Prompt = prompt;
+            });
 
         /// <summary>
         /// Display a confirmation prompt with a preset default.
@@ -20,8 +26,14 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="prompt">The prompt to display, for example "Continue?".</param>
         /// <param name="defaultChoice">True if the yes option is the default, false if the no option is the default. Defaults to true.</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">If prompt is null.</exception>6
-        public static bool Confirm(string prompt, bool defaultChoice) => Confirm(prompt, defaultChoice, 'y', 'n');
+        /// <exception cref="ArgumentNullException">If prompt is null.</exception>
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
+        public static bool Confirm(string prompt, bool defaultChoice) =>
+            Confirm(options =>
+            {
+                options.Prompt = prompt;
+                options.DefaultChoice = defaultChoice;
+            });
 
         /// <summary>
         /// Display a confirmation prompt with a preset default.
@@ -33,18 +45,38 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="noChar">The character to display for the no option. Defaults to 'n'</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
-        public static bool Confirm(string prompt, bool defaultChoice, char yesChar, char noChar)
-        {
-            if (prompt == null)
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
+        public static bool Confirm(string prompt, bool defaultChoice, char yesChar, char noChar) =>
+            Confirm(options =>
             {
-                throw new ArgumentNullException(nameof(prompt));
+                options.Prompt = prompt;
+                options.DefaultChoice = defaultChoice;
+                options.YesChar = yesChar;
+                options.NoChar = noChar;
+            });
+
+        /// <summary>
+        /// Display a confirmation prompt with a preset default.
+        /// The user can select the yes or no key, press enter to select the default or escape to select the other option.
+        /// </summary>
+        /// <param name="optionsAction">The method configuration.</param>
+        /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
+        /// <exception cref="ArgumentNullException">If optionsAction is null.</exception>
+        public static bool Confirm(Action<ConfirmOptions> optionsAction)
+        {
+            if (optionsAction == null)
+            {
+                throw new ArgumentNullException(nameof(optionsAction));
             }
 
-            char loweredYesChar = char.ToLowerInvariant(yesChar);
-            char loweredNoChar = char.ToLowerInvariant(noChar);
-            char capitalizedYesChar = defaultChoice ? char.ToUpperInvariant(yesChar) : char.ToLowerInvariant(yesChar);
-            char capitalizedNoChar = !defaultChoice ? char.ToUpperInvariant(noChar) : char.ToLowerInvariant(noChar);
-            Console.Write($"{prompt} [{capitalizedYesChar}/{capitalizedNoChar}]:");
+            ConfirmOptions options = new ConfirmOptions();
+            optionsAction(options);
+
+            char loweredYesChar = char.ToLowerInvariant(options.YesChar);
+            char loweredNoChar = char.ToLowerInvariant(options.NoChar);
+            char capitalizedYesChar = options.DefaultChoice ? char.ToUpperInvariant(options.YesChar) : char.ToLowerInvariant(options.YesChar);
+            char capitalizedNoChar = !options.DefaultChoice ? char.ToUpperInvariant(options.NoChar) : char.ToLowerInvariant(options.NoChar);
+            Console.Write($"{options.Prompt} [{capitalizedYesChar}/{capitalizedNoChar}]:");
 
             ConsoleKeyInfo key;
             char loweredKeyChar;
@@ -60,16 +92,16 @@ namespace BorisEetgerink.ConsoleExtensions
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
-                    Console.Write(defaultChoice ? yesChar : noChar);
+                    Console.Write(options.DefaultChoice ? loweredYesChar : loweredNoChar);
                     Console.WriteLine();
-                    return defaultChoice;
+                    return options.DefaultChoice;
                 case ConsoleKey.Escape:
-                    Console.Write(!defaultChoice ? yesChar : noChar);
+                    Console.Write(!options.DefaultChoice ? loweredYesChar : loweredNoChar);
                     Console.WriteLine();
-                    return !defaultChoice;
+                    return !options.DefaultChoice;
             }
 
-            Console.Write(key.KeyChar);
+            Console.Write(char.ToLowerInvariant(key.KeyChar));
             Console.WriteLine();
             return loweredKeyChar == loweredYesChar;
         }
