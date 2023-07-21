@@ -86,13 +86,8 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <exception cref="ArgumentOutOfRangeException">If defaultChoice is less than zero or equal to or greater than the number of items.</exception>
         public static int PickOne(Action<PickOneOptions> optionsAction)
         {
-            if (optionsAction == null)
-            {
-                throw new ArgumentNullException(nameof(optionsAction));
-            }
-
             PickOneOptions options = new PickOneOptions();
-            optionsAction(options);
+            optionsAction?.Invoke(options);
 
             if (!options.Items.Any())
             {

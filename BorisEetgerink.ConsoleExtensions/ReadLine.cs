@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using BorisEetgerink.ConsoleExtensions.Options;
 
 namespace BorisEetgerink.ConsoleExtensions
 {
@@ -9,6 +10,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// Accept input without displaying a prompt or default input.
         /// </summary>
         /// <returns>The input entered by the user.</returns>
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
         public static string ReadLine() => ReadLine(string.Empty, string.Empty, false);
 
         /// <summary>
@@ -17,6 +19,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="prompt">The prompt to display, for example ">".</param>
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
         public static string ReadLine(string prompt) => ReadLine(prompt, string.Empty, false);
 
         /// <summary>
@@ -26,19 +29,26 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <param name="defaultInput">The default input to display, for example "Hello, World!".</param>
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If either prompt or defaultInput are null.</exception>
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
         public static string ReadLine(string prompt, string defaultInput) => ReadLine(prompt, defaultInput, false);
 
-        private static string ReadLine(string prompt, string defaultInput, bool maskInput)
-        {
-            if (prompt == null)
+        private static string ReadLine(string prompt, string defaultInput, bool maskInput) =>
+            ReadLine(options =>
             {
-                throw new ArgumentNullException(nameof(prompt));
-            }
+                options.Prompt = prompt;
+                options.DefaultInput = defaultInput;
+                options.MaskInput = maskInput;
+            });
 
-            if (defaultInput == null)
-            {
-                throw new ArgumentNullException(nameof(defaultInput));
-            }
+        /// <summary>
+        /// Display a prompt, optionally with a default input and masked input.
+        /// </summary>
+        /// <param name="optionsAction">The method configuration.</param>
+        /// <returns>The input entered by the user.</returns>
+        public static string ReadLine(Action<ReadLineOptions> optionsAction)
+        {
+            ReadLineOptions options = new ReadLineOptions();
+            optionsAction?.Invoke(options);
 
             // cmd.exe has a default buffer height of the window height.
             // An ArgumentOutOfRangeException is thrown when the cursor position exceeds the buffer height.
@@ -49,7 +59,7 @@ namespace BorisEetgerink.ConsoleExtensions
             int originalCursorLeft = Console.CursorLeft;
             int originalCursorTop = Console.CursorTop;
 
-            StringBuilder input = new StringBuilder(defaultInput);
+            StringBuilder input = new StringBuilder(options.DefaultInput);
             int maxInputLength = input.Length;
 
             // The cursor position relative to the input. Starts at the end of the input.
@@ -61,9 +71,9 @@ namespace BorisEetgerink.ConsoleExtensions
             {
                 Console.CursorVisible = false;
                 SetCursorPosition(originalCursorLeft, originalCursorTop);
-                Console.Write(prompt);
+                Console.Write(options.Prompt);
 
-                if (maskInput)
+                if (options.MaskInput)
                 {
                     Console.Write(new string('*', input.Length));
                 }
@@ -75,7 +85,7 @@ namespace BorisEetgerink.ConsoleExtensions
                 maxInputLength = Math.Max(maxInputLength, input.Length);
                 int overflow = Math.Max(maxInputLength - input.Length, 0);
                 Console.Write(new string(' ', overflow));
-                SetCursorPosition(originalCursorLeft, originalCursorTop, prompt.Length, cursorPosition);
+                SetCursorPosition(originalCursorLeft, originalCursorTop, options.Prompt.Length, cursorPosition);
                 Console.CursorVisible = true;
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -152,7 +162,7 @@ namespace BorisEetgerink.ConsoleExtensions
                         if (key.Modifiers.HasFlag(ConsoleModifiers.Control))
                         {
                             input.Clear();
-                            input.Append(defaultInput);
+                            input.Append(options.DefaultInput);
                             cursorPosition = input.Length;
                         }
                         else

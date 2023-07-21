@@ -17,6 +17,14 @@ int selectedIndex = ConsoleExtensions.PickOne(options =>
 });
 Console.WriteLine(selectedIndex);
 
+string input = ConsoleExtensions.ReadLine(options =>
+{
+    options.Prompt = ">";
+    options.DefaultInput = "Hello, World!";
+    options.MaskInput = false;
+});
+Console.WriteLine(input);
+
 // string? username = ConsoleExtensions.ReadLine("Username:");
 // string? password = ConsoleExtensions.ReadPassword("Password:");
 // Console.WriteLine($"{username}:{password}");

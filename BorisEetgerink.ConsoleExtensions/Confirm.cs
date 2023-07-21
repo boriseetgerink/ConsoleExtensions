@@ -61,16 +61,10 @@ namespace BorisEetgerink.ConsoleExtensions
         /// </summary>
         /// <param name="optionsAction">The method configuration.</param>
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
-        /// <exception cref="ArgumentNullException">If optionsAction is null.</exception>
         public static bool Confirm(Action<ConfirmOptions> optionsAction)
         {
-            if (optionsAction == null)
-            {
-                throw new ArgumentNullException(nameof(optionsAction));
-            }
-
             ConfirmOptions options = new ConfirmOptions();
-            optionsAction(options);
+            optionsAction?.Invoke(options);
 
             char loweredYesChar = char.ToLowerInvariant(options.YesChar);
             char loweredNoChar = char.ToLowerInvariant(options.NoChar);
