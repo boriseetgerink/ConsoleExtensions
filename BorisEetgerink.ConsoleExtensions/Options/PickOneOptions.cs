@@ -14,8 +14,8 @@ namespace BorisEetgerink.ConsoleExtensions.Options
         public int DefaultChoice { get; set; }
 
         /// <summary>
-        /// Gets or sets the options to choose from. Must contain at least one item.
+        /// Gets or sets the items to choose from. Must contain at least one item.
         /// </summary>
-        public IReadOnlyCollection<string> Options { get; set; } = Array.Empty<string>();
+        public IReadOnlyCollection<string> Items { get; set; } = Array.Empty<string>();
     }
 }
