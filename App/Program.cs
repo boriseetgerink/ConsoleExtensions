@@ -25,6 +25,9 @@ string input = ConsoleExtensions.ReadLine(options =>
 });
 Console.WriteLine(input);
 
-// string? username = ConsoleExtensions.ReadLine("Username:");
-// string? password = ConsoleExtensions.ReadPassword("Password:");
-// Console.WriteLine($"{username}:{password}");
+string password = ConsoleExtensions.ReadLine(options =>
+{
+    options.Prompt = "Password:";
+    options.MaskInput = true;
+});
+Console.WriteLine(password);
