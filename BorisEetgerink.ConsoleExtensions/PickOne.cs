@@ -16,12 +16,11 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         /// <exception cref="ArgumentException">If no items are specified. At least one item is required.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static int PickOne(string prompt, IEnumerable<string> items) =>
-            PickOne(options =>
-            {
-                options.Prompt = prompt;
-                options.Items = items.ToArray();
-            });
+        public static int PickOne(string prompt, IEnumerable<string> items) => PickOne(options =>
+        {
+            options.Prompt = prompt;
+            options.Items = items.ToArray();
+        });
 
         /// <summary>
         /// Displays the prompt and allows the user to select one of the available items.
@@ -32,31 +31,11 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         /// <exception cref="ArgumentException">If no items are specified. At least one item is required.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static int PickOne(string prompt, params string[] items) =>
-            PickOne(options =>
-            {
-                options.Prompt = prompt;
-                options.Items = items;
-            });
-
-        /// <summary>
-        /// Displays the prompt and allows the user to select one of the available items.
-        /// </summary>
-        /// <param name="prompt">The prompt or question to display.</param>
-        /// <param name="defaultChoice">The index of the item selected by default.</param>
-        /// <param name="items">The items to choose from.</param>
-        /// <returns>The index of the selected item.</returns>
-        /// <exception cref="ArgumentNullException">If prompt is null.</exception>
-        /// <exception cref="ArgumentException">If no items are specified. At least one item is required.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">If defaultChoice is less than zero or equal to or greater than the number of items.</exception>
-        [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static int PickOne(string prompt, int defaultChoice, IEnumerable<string> items) =>
-            PickOne(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultChoice = defaultChoice;
-                options.Items = items.ToArray();
-            });
+        public static int PickOne(string prompt, params string[] items) => PickOne(options =>
+        {
+            options.Prompt = prompt;
+            options.Items = items;
+        });
 
         /// <summary>
         /// Displays the prompt and allows the user to select one of the available items.
@@ -69,13 +48,30 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <exception cref="ArgumentException">If no items are specified. At least one item is required.</exception>
         /// <exception cref="ArgumentOutOfRangeException">If defaultChoice is less than zero or equal to or greater than the number of items.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static int PickOne(string prompt, int defaultChoice, params string[] items) =>
-            PickOne(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultChoice = defaultChoice;
-                options.Items = items;
-            });
+        public static int PickOne(string prompt, int defaultChoice, IEnumerable<string> items) => PickOne(options =>
+        {
+            options.Prompt = prompt;
+            options.DefaultChoice = defaultChoice;
+            options.Items = items.ToArray();
+        });
+
+        /// <summary>
+        /// Displays the prompt and allows the user to select one of the available items.
+        /// </summary>
+        /// <param name="prompt">The prompt or question to display.</param>
+        /// <param name="defaultChoice">The index of the item selected by default.</param>
+        /// <param name="items">The items to choose from.</param>
+        /// <returns>The index of the selected item.</returns>
+        /// <exception cref="ArgumentNullException">If prompt is null.</exception>
+        /// <exception cref="ArgumentException">If no items are specified. At least one item is required.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">If defaultChoice is less than zero or equal to or greater than the number of items.</exception>
+        [Obsolete("Please use the overload with the optionsAction parameter.")]
+        public static int PickOne(string prompt, int defaultChoice, params string[] items) => PickOne(options =>
+        {
+            options.Prompt = prompt;
+            options.DefaultChoice = defaultChoice;
+            options.Items = items;
+        });
 
         /// <summary>
         /// Displays the prompt and allows the user to select one of the available items.

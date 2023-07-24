@@ -11,8 +11,7 @@ namespace BorisEetgerink.ConsoleExtensions
         /// </summary>
         /// <returns>The input entered by the user.</returns>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static string ReadLine() =>
-            ReadLine(_ => {});
+        public static string ReadLine() => ReadLine(_ => {});
 
         /// <summary>
         /// Display a prompt without a default input.
@@ -21,11 +20,10 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static string ReadLine(string prompt) =>
-            ReadLine(options =>
-            {
-                options.Prompt = prompt;
-            });
+        public static string ReadLine(string prompt) => ReadLine(options =>
+        {
+            options.Prompt = prompt;
+        });
 
         /// <summary>
         /// Display a prompt with a default input.
@@ -35,12 +33,11 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <returns>The input entered by the user.</returns>
         /// <exception cref="ArgumentNullException">If either prompt or defaultInput are null.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static string ReadLine(string prompt, string defaultInput) =>
-            ReadLine(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultInput = defaultInput;
-            });
+        public static string ReadLine(string prompt, string defaultInput) => ReadLine(options =>
+        {
+            options.Prompt = prompt;
+            options.DefaultInput = defaultInput;
+        });
 
         /// <summary>
         /// Display a prompt, optionally with a default input and masked input.

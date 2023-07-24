@@ -13,11 +13,10 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static bool Confirm(string prompt) =>
-            Confirm(options =>
-            {
-                options.Prompt = prompt;
-            });
+        public static bool Confirm(string prompt) => Confirm(options =>
+        {
+            options.Prompt = prompt;
+        });
 
         /// <summary>
         /// Display a confirmation prompt with a preset default.
@@ -28,12 +27,11 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static bool Confirm(string prompt, bool defaultChoice) =>
-            Confirm(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultChoice = defaultChoice;
-            });
+        public static bool Confirm(string prompt, bool defaultChoice) => Confirm(options =>
+        {
+            options.Prompt = prompt;
+            options.DefaultChoice = defaultChoice;
+        });
 
         /// <summary>
         /// Display a confirmation prompt with a preset default.
@@ -46,14 +44,13 @@ namespace BorisEetgerink.ConsoleExtensions
         /// <returns>True if the user confirmed the prompt, false otherwise.</returns>
         /// <exception cref="ArgumentNullException">If prompt is null.</exception>
         [Obsolete("Please use the overload with the optionsAction parameter.")]
-        public static bool Confirm(string prompt, bool defaultChoice, char yesChar, char noChar) =>
-            Confirm(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultChoice = defaultChoice;
-                options.YesChar = yesChar;
-                options.NoChar = noChar;
-            });
+        public static bool Confirm(string prompt, bool defaultChoice, char yesChar, char noChar) => Confirm(options =>
+        {
+            options.Prompt = prompt;
+            options.DefaultChoice = defaultChoice;
+            options.YesChar = yesChar;
+            options.NoChar = noChar;
+        });
 
         /// <summary>
         /// Display a confirmation prompt with a preset default.
