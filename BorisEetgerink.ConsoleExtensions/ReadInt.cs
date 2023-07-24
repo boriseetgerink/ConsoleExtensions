@@ -63,7 +63,12 @@ namespace BorisEetgerink.ConsoleExtensions
             string defaultInputString = defaultInput?.ToString() ?? string.Empty;
 
             int input;
-            while (!int.TryParse(ReadLine(prompt, defaultInputString, false), out input))
+            while (!int.TryParse(ReadLine(options =>
+                                 {
+                                     options.Prompt = prompt;
+                                     options.DefaultInput = defaultInputString;
+                                 }),
+                                 out input))
             {
                 Console.WriteLine(invalidNumberMessage);
             }

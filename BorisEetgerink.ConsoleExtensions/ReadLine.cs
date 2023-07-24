@@ -42,15 +42,6 @@ namespace BorisEetgerink.ConsoleExtensions
                 options.DefaultInput = defaultInput;
             });
 
-        // TODO: Remove and update usages.
-        private static string ReadLine(string prompt, string defaultInput, bool maskInput) =>
-            ReadLine(options =>
-            {
-                options.Prompt = prompt;
-                options.DefaultInput = defaultInput;
-                options.MaskInput = maskInput;
-            });
-
         /// <summary>
         /// Display a prompt, optionally with a default input and masked input.
         /// </summary>
