@@ -31,3 +31,19 @@ string password = ConsoleExtensions.ReadLine(options =>
     options.MaskInput = true;
 });
 Console.WriteLine(password);
+
+int number = ConsoleExtensions.ReadInt(options =>
+{
+    options.Prompt = "ID:";
+    options.DefaultInput = 42;
+    options.InvalidNumberMessage = "Invalid number...";
+});
+Console.WriteLine(number);
+
+int secretCode = ConsoleExtensions.ReadInt(options =>
+{
+    options.Prompt = "Code:";
+    options.InvalidNumberMessage = "Not a valid code.";
+    options.MaskInput = true;
+});
+Console.WriteLine(secretCode);
