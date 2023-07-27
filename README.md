@@ -4,22 +4,20 @@ Various console extensions to handle user input. Bug reports, feature ideas and 
 
 ## Confirm
 
-Display a confirmation prompt with a preset default. The user can select the yes or no key,
-press enter to select the default or escape to select the other option.
+Display a confirmation prompt with a preset default.
 
 ### Usage
 
 ```csharp
 using BorisEetgerink.ConsoleExtensions;
 
-// The default usage.
-bool confirmDefault = ConsoleExtensions.Confirm("Continue?");
-
-// Set the no option as the default.
-bool continueWithCaution = ConsoleExtensions.Confirm("Are you sure?", false);
-
-// Built in support for different languages.
-bool confirmFrench = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
+bool confirmed = ConsoleExtensions.Confirm(options =>
+{
+    options.Prompt = "Continue?";
+    options.DefaultChoice = true;
+    options.YesChar = 'y';
+    options.NoChar = 'n';
+});
 ```
 
 ### Output
@@ -30,33 +28,28 @@ Continue? [Y/n]:
 
 ## PickOne
 
-Display a prompt with a list of options. The user can select the appropriate option with the up and down arrow keys and
-confirm with the enter key.
+Display a prompt with a list of options.
 
 ### Usage
 
 ```csharp
 using BorisEetgerink.ConsoleExtensions;
 
-// Select from a list of hard-coded options:
-int selectedIndex = ConsoleExtensions.PickOne("Which is your favorite OS?", "Linux", "MacOS", "Windows");
-
-// Select from an IEnumerable<string> of options:
-List<string> operatingSystems = new() { "Linux", "MacOS", "Windows" };
-int selectedIndex = ConsoleExtensions.PickOne("Pick your favorite OS:", operatingSystems);
-
-// Optionally set the selected index (defaults to zero, the first option):
-List<string> operatingSystems = new() { "Linux", "MacOS", "Windows" };
-int selectedIndex = ConsoleExtensions.PickOne("Pick your favorite OS:", 2, operatingSystems);
+int selectedIndex = ConsoleExtensions.PickOne(options =>
+{
+    options.Prompt = "Which is your favorite OS?";
+    options.Items = new[] { "Linux", "MacOS", "Windows" };
+    options.DefaultChoice = 2;
+});
 ```
 
 ### Output
 
 ```
 Pick your favorite OS:
->Linux
+ Linux
  MacOS
- Windows
+>Windows
 ```
 
 ## ReadInt
@@ -68,53 +61,51 @@ Extension to ReadLine to enter a number.
 ```csharp
 using BorisEetgerink.ConsoleExtensions;
 
-int number = ConsoleExtensions.ReadInt("ID>", 42, "Invalid ID.");
+int number = ConsoleExtensions.ReadInt(options =>
+{
+    options.Prompt = "ID:";
+    options.DefaultInput = 42;
+    options.InvalidNumberMessage = "Invalid number...";
+});
 ```
 
 ### Output
 
 ```
-ID>abc
-Invalid ID.
-ID>42
+ID:abc
+Invalid number...
+ID:42
 ```
 
 ## ReadLine
 
 Enable a prompt and default input as an extension to `Console.ReadLine()`.
+Optionally mask input with asterisks for password entry, for example.
 
 ### Usage
 
 ```csharp
 using BorisEetgerink.ConsoleExtensions;
 
-string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Green");
+string username = ConsoleExtensions.ReadLine(options =>
+{
+    options.Prompt = "Username:";
+    options.DefaultInput = "Boris";
+    options.MaskInput = false;
+});
+
+string password = ConsoleExtensions.ReadLine(options =>
+{
+    options.Prompt = "Password:";
+    options.MaskInput = true;
+});
 ```
 
 ### Output
 
 ```
-What is your favorite color? >Green
-```
-
-## ReadPassword
-
-Display a prompt for a password, masking the input.
-
-### Usage
-
-```csharp
-using BorisEetgerink.ConsoleExtensions;
-
-string? username = ConsoleExtensions.ReadLine("Username:");
-string? password = ConsoleExtensions.ReadPassword("Password:");
-```
-
-### Output
-
-```
-Username:BorisEetgerink
-Password:****************
+Username:Boris
+Password:************
 ```
 
 ## Supported keys
