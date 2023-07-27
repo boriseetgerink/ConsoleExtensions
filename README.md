@@ -28,13 +28,6 @@ bool confirmFrench = ConsoleExtensions.Confirm("Continuer?", true, 'o', 'n');
 Continue? [Y/n]:
 ```
 
-### Supported keys
-
-* `Enter`: Select the default option (defaults to yes).
-* `Esc`: Select the other option (defaults to no).
-* `y`: The default yes-key. Can be overridden.
-* `n`: The default no-key. Can be overridden.
-
 ## PickOne
 
 Display a prompt with a list of options. The user can select the appropriate option with the up and down arrow keys and
@@ -66,11 +59,6 @@ Pick your favorite OS:
  Windows
 ```
 
-### Supported keys
-
-* `↑` / `↓`: Select the previous or the next option from the list.
-* `Enter`: Confirm the selected option.
-
 ## ReadInt
 
 Extension to ReadLine to enter a number.
@@ -91,10 +79,6 @@ Invalid ID.
 ID>42
 ```
 
-### Supported keys
-
-See supported keys of ReadLine.
-
 ## ReadLine
 
 Enable a prompt and default input as an extension to `Console.ReadLine()`.
@@ -112,16 +96,6 @@ string? line = ConsoleExtensions.ReadLine("What is your favorite color? >", "Gre
 ```
 What is your favorite color? >Green
 ```
-
-### Supported keys
-
-* `Backspace` / `Delete`: Remove one character to the left or right.
-* `←` / `→`: Move the cursor to the left or right.
-* `Ctrl + ←` / `Ctrl + →`: Move the cursor one word to the left or right.
-* `Home` / `End`: Move the cursor to the beginning or the end of the line.
-* `Esc`: Clear the line.
-* `Ctrl + Z`: Reset the line to the default input.
-* `Enter`: Confirm the input.
 
 ## ReadPassword
 
@@ -143,6 +117,26 @@ Username:BorisEetgerink
 Password:****************
 ```
 
-### Supported keys
+## Supported keys
 
-See supported keys of ReadLine.
+### Confirm
+
+* `Enter`: Select the default option (defaults to yes).
+* `Esc`: Select the other option (defaults to no).
+* `y`: The default yes-key. Can be overridden.
+* `n`: The default no-key. Can be overridden.
+
+### PickOne
+
+* `↑` / `↓`: Select the previous or the next option from the list.
+* `Enter`: Confirm the selected option.
+
+### ReadLine, ReadPassword, ReadInt
+
+* `Backspace` / `Delete`: Remove one character to the left or right.
+* `←` / `→`: Move the cursor to the left or right.
+* `Ctrl + ←` / `Ctrl + →`: Move the cursor one word to the left or right.
+* `Home` / `End`: Move the cursor to the beginning or the end of the line.
+* `Esc`: Clear the line.
+* `Ctrl + Z`: Reset the line to the default input.
+* `Enter`: Confirm the input.
